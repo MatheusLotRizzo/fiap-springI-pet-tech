@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_produto")
-public class Produto {
+public class ProdutoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -16,10 +16,10 @@ public class Produto {
     private double preco;
     private String urlDaImagem;
 
-    public Produto() {
+    public ProdutoEntity() {
     }
 
-    public Produto(UUID id, String nome, String descricao, double preco, String urlDaImagem) {
+    public ProdutoEntity(UUID id, String nome, String descricao, double preco, String urlDaImagem) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -71,7 +71,7 @@ public class Produto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Produto produto = (Produto) o;
+        ProdutoEntity produto = (ProdutoEntity) o;
         return Objects.equals(id, produto.id);
     }
 
