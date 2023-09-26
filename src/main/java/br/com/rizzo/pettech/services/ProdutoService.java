@@ -1,6 +1,7 @@
 package br.com.rizzo.pettech.services;
 
 import br.com.rizzo.pettech.entities.ProdutoEntity;
+import br.com.rizzo.pettech.exceptions.NotFoundException;
 import br.com.rizzo.pettech.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,8 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Optional<ProdutoEntity> findById(UUID id) {
-        return produtoRepository.findById(id);
+    public ProdutoEntity findById(UUID id) {
+        return produtoRepository.findById(id).orElseThrow(() -> new NotFoundException("Produto não encontrado"));
     }
 
     public ProdutoEntity save(ProdutoEntity produtoEntity) {
@@ -37,7 +38,7 @@ public class ProdutoService {
             produtoAtualizado.setUrlDaImagem(produtoEntity.getUrlDaImagem());
             return produtoRepository.save(produtoAtualizado);
         }
-        return null;
+        throw new NotFoundException("Produto não encontrado");
     }
 
     public void delete(UUID id) {

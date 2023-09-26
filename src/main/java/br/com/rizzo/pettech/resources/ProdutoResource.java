@@ -25,7 +25,7 @@ public class ProdutoResource {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<ProdutoEntity>> findById(@PathVariable UUID id) {
+    public ResponseEntity<ProdutoEntity> findById(@PathVariable UUID id) {
         return ResponseEntity.ok(produtoService.findById(id));
     }
 
