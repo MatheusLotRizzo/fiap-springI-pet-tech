@@ -1,4 +1,4 @@
-package br.com.rizzo.pettech.entities;
+package br.com.rizzo.pettech.domain.entities;
 
 import jakarta.persistence.*;
 

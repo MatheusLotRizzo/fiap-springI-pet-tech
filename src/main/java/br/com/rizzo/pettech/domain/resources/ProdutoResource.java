@@ -1,15 +1,13 @@
-package br.com.rizzo.pettech.resources;
+package br.com.rizzo.pettech.domain.resources;
 
-import br.com.rizzo.pettech.entities.ProdutoEntity;
-import br.com.rizzo.pettech.services.ProdutoService;
+import br.com.rizzo.pettech.domain.dto.ProdutoDTO;
+import br.com.rizzo.pettech.domain.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -20,23 +18,23 @@ public class ProdutoResource {
     private ProdutoService produtoService;
 
     @GetMapping
-    public ResponseEntity<Collection<ProdutoEntity>> findAll() {
+    public ResponseEntity<Collection<ProdutoDTO>> findAll() {
         return ResponseEntity.ok(produtoService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProdutoEntity> findById(@PathVariable UUID id) {
+    public ResponseEntity<ProdutoDTO> findById(@PathVariable UUID id) {
         return ResponseEntity.ok(produtoService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoEntity> save(@RequestBody ProdutoEntity produtoEntity) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.save(produtoEntity));
+    public ResponseEntity<ProdutoDTO> save(@RequestBody ProdutoDTO produtoDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.save(produtoDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoEntity> update(@PathVariable UUID id, @RequestBody ProdutoEntity produtoEntity) {
-        return ResponseEntity.ok(produtoService.update(id, produtoEntity));
+    public ResponseEntity<ProdutoDTO> update(@PathVariable UUID id, @RequestBody ProdutoDTO produtoDTO) {
+        return ResponseEntity.ok(produtoService.update(id, produtoDTO));
     }
 
     @DeleteMapping("/{id}")
